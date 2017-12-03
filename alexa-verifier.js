@@ -24,14 +24,19 @@ module.exports = function(RED) {
 				var signature = msg.req.headers.signature;
 				var body = JSON.stringify(msg.req.body);
 				var messages = {
-					'request body invalid json': 'The request body is not a valid JSON object.  The signature cannot be verified.'
+					'request body invalid json': 'The request body is not a valid JSON object.  The signature cannot be verified.',
+					'missing certificate url': 'The msg.req.headers.signaturecertchainurl property is empty.  The signature cannot be verified.',
+					'missing signature': 'The msg.req.headers.signature property is empty.  There is no signature to verify.',
+					'missing request (certificate) body': 'The msq.req.body property is empty.  There is no message content to check the signature against.',
+					'invalid signature (not base64 encoded)': 'The signature is not properly Base64 encoded and connot be verified.',
+					'invalid signature': 'Verification failed: the signature provided is not valid.'
 				}
 				verifier(url, signature, body, function(err) {
 					if (err) {
 						if (err in messages) {
 							msg.payload = messages[err];
 						} else {
-							msg.payload = err;
+							msg.payload = 'Verification failed: ' + err;
 						}
 						msg.statusCode = 401;
 					}
