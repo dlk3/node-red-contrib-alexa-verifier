@@ -7,7 +7,7 @@
 	},
 	"keywords": [ "node-red", "alexa", "echo", "amazon" ],
 	"author": "David King",
-	"license": "MIT",
+	"license": "GNU General Public License, Version 3",
 	"node-red": {
 		"nodes": {
 			"alexa-verifier": "alexa-verifier.js"

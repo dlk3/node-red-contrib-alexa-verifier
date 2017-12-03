@@ -6,7 +6,7 @@ This node is a wrapper for Mike Reinstein's [alexa-verifier](https://github.com/
 
 ## Usage
 
-You must configure this node with your Alexa skill's Application ID
+You must configure this node with your Alexa skill's Application ID.
 
 ## Output
 
@@ -14,3 +14,6 @@ If the incoming request does not pass the verification checks, then msg.payload 
 
 If the incoming request passes the checks, the request will ba passed through unchanged to the next node in your flow.  It will not contain a msg.statusCode property.
 
+## License
+
+This program is made available under the terms of the GNU General Public License.  Please see the LICENSE file distributed with this progam or https://www.gnu.org/licenses/ for a copy of this license.
