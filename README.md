@@ -1,6 +1,6 @@
 # node-red-contrib-alexa-verifier
 
-This node performs the security checks mandated by Amazon in the [Alexa Skills Kit](<a href="https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html).  It confirms that the incoming request contains the correct Application ID, a valid request signature, and a recent timestamp.
+This node performs the security checks mandated by Amazon in the [Alexa Skills Kit](https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html).  It confirms that the incoming request contains the correct Application ID, a valid request signature, and a recent timestamp.
 
 This node is a wrapper for Mike Reinstein's [alexa-verifier](https://github.com/mreinstein/alexa-verifier) NodeJS module, extended to also verify the skill's Application ID.
 
