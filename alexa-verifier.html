@@ -32,7 +32,8 @@
 <p>Verify requests sent by Amazon&rsquo;s Echo devices.<p>
 <h3>Details</h3>
 <p>This node performs the security checks mandated by Amazon in the <a href="https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html">Alexa Skills Kit</a>.  It confirms that the incoming request contains the correct Application ID, a valid request signature, and a recent timestamp.</p>
-<p>You must configure this node with your Alexa Application ID</p>
+<p>You must configure this node with your Alexa skill&rsquo;s Application ID</p>
 <p>If the incoming request does not pass these checks, msg.payload will contain an error message describing the reason for the failure and msg.statusCode will be set.  The next node in your flow should check for these conditions and route the msg object accordingly.</p>
 <p>If the incoming request passes the checks, the request will ba passed through unchanged to the next node in your flow.  It will not contain a msg.statusCode property.</p>
+<p>This node is a wrapper for Mike Reinstein&rsquo;s <a href="https://github.com/mreinstein/alexa-verifier">alexa-verifier</a> NodeJS module, with an extension to verify the skill&rsquo;s Application ID.</p>
 </script>
