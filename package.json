@@ -1,0 +1,16 @@
+{
+	"name": "node-red-contrib-alexa-verifier",
+	"version": "0.0.1",
+	"description": "Validate requests sent by Amazon's Echo devices as documented in the Alexa Skills Kit at https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html",
+	"dependencies": {
+		"alexa-verifier": "^1.0.0"
+	},
+	"keywords": [ "node-red", "alexa", "echo", "amazon" ],
+	"author": "David King",
+	"license": "MIT",
+	"node-red": {
+		"nodes": {
+			"alexa-verifier": "alexa-verifier.js"
+		}
+	}	
+}

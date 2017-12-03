@@ -1,0 +1,38 @@
+<script type="text/javascript">
+	RED.nodes.registerType('alexa verifier',{
+		category: 'function',
+		color: '#a6bbcf',
+        defaults: {
+			name: {value:""}
+		},
+		inputs:1,
+		outputs:1,
+		icon: "alexa-verifier.png",
+		label: function() {
+			return this.name||"alexa verifier";
+		},
+		credentials: {
+			applid: {type:"text"}
+		}
+	});
+</script>
+
+<script type="text/x-red" data-template-name="alexa verifier">
+	<div class="form-row">
+		<label for="node-input-name"><i class="icon-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+	<div class="form-row">
+		<label for="node-input-applid"><i class="icon-tag"></i> Application ID</label>
+		<input type="text" id="node-input-applid" placeholder="Your skill&rsquo;s application ID">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="alexa verifier">
+<p>Verify requests sent by Amazon&rsquo;s Echo devices.<p>
+<h3>Details</h3>
+<p>This node performs the security checks mandated by Amazon in the <a href="https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html">Alexa Skills Kit</a>.  It confirms that the incoming request contains the correct Application ID, a valid request signature, and a recent timestamp.</p>
+<p>You must configure this node with your Alexa Application ID</p>
+<p>If the incoming request does not pass these checks, msg.payload will contain an error message describing the reason for the failure and msg.statusCode will be set.  The next node in your flow should check for these conditions and route the msg object accordingly.</p>
+<p>If the incoming request passes the checks, the request will ba passed through unchanged to the next node in your flow.  It will not contain a msg.statusCode property.</p>
+</script>
