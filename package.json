@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-alexa-verifier",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Validate requests sent by Amazon's Echo devices as documented in the Alexa Skills Kit at https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html",
 	"dependencies": {
 		"alexa-verifier": "^1.0.0"
