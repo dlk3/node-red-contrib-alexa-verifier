@@ -7,7 +7,7 @@ and a recent timestamp.
 
 This node is a wrapper for Mike Reinstein&rsquo;s 
 [alexa-verifier](https://github.com/mreinstein/alexa-verifier) NodeJS 
-module, extended to verify the skill&rsquo;s Application ID.
+module, extended to also verify the skill&rsquo;s Application ID.
 
 ## Inputs
 
@@ -26,6 +26,6 @@ through the "valid" output port.
 
 ## License
 
-This program is made available under the terms of the GNU General Public License.  
-Please see the LICENSE file distributed with this progam or https://www.gnu.org/licenses/ 
+This program is made available under the terms of the GNU General Public License.  Please 
+see the LICENSE file distributed with this progam or https://www.gnu.org/licenses/ 
 for a copy of this license.
