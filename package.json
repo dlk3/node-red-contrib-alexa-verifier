@@ -1,13 +1,27 @@
 {
 	"name": "node-red-contrib-alexa-verifier",
-	"version": "0.0.2",
-	"description": "Validate requests sent by Amazon's Echo devices as documented in the Alexa Skills Kit at https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html",
-	"dependencies": {
-		"alexa-verifier": "^1.0.0"
+	"version": "1.0.0",
+	"description": "Performs the security checks mandated by Amazon in the Alexa Skills Kit for Alexa skills hosted as external web services.",
+	"main": "alexa-verifier.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dlk3/node-red-contrib-alexa-verifier"
 	},
 	"keywords": [ "node-red", "alexa", "echo", "amazon" ],
 	"author": "David King",
-	"license": "GNU General Public License, Version 3",
+	"license": "GPL",
+	"bugs": {
+		"url": "https://github.com/dlk3/node-red-contrib-alexa-verifier/issues"
+	},
+	"homepage": {
+		"url": "https://github.com/dlk3/node-red-contrib-alexa-verifier"
+	},
+	"dependencies": {
+		"alexa-verifier": "1"
+	},
 	"node-red": {
 		"nodes": {
 			"alexa-verifier": "alexa-verifier.js"
