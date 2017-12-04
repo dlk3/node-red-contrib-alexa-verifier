@@ -12,13 +12,11 @@
 	},
 	"keywords": [ "node-red", "alexa", "echo", "amazon" ],
 	"author": "David King",
-	"license": "GPL",
+	"license": "GPL-3.0",
 	"bugs": {
 		"url": "https://github.com/dlk3/node-red-contrib-alexa-verifier/issues"
 	},
-	"homepage": {
-		"url": "https://github.com/dlk3/node-red-contrib-alexa-verifier"
-	},
+	"homepage": "https://github.com/dlk3/node-red-contrib-alexa-verifier",
 	"dependencies": {
 		"alexa-verifier": "1"
 	},
