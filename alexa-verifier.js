@@ -21,25 +21,33 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this, config);
 		var node = this;
 		node.on('input', function(msg) {
+			//  Split the Application ID list into an array and remove any leading/trailing whitespace
+			applid_list = node.credentials.applid.split(',');
+			for (var i = 0; i < applid_list.length; i++) {
+				applid_list[i] = applid_list[i].trim();
+			}
+			//  Do the various verification checks
+			//  There are 2 outputs: [invalid, valid]
 			if (!node.credentials.hasOwnProperty('applid')) {
 				node.error('The alexa verifier node\'s Application ID property needs to be set', msg);
 			} else if (!msg.payload.hasOwnProperty('session')) {
 				msg.payload = 'The incoming request did not contain a msg.payload.session property object, which suggests that it was not an Alexa skill request'; 
 				msg.statusCode = 401;
-				node.send(msg);
-			} else if (msg.payload.session.application.applicationId != node.credentials.applid) {
-				msg.payload = 'The skill request contained an Application ID which did not match the one configured in the alexa verifier node'; 
+				node.send([msg, null]);
+			} else if (applid_list.indexOf(msg.payload.session.application.applicationId) == -1) {
+				msg.payload = 'The skill request contained an Application ID which did not match any of those configured in the alexa verifier node'; 
 				msg.statusCode = 401;
-				node.send(msg);
+				node.send([msg, null]);
 			} else if (!msg.req.headers.hasOwnProperty('signaturecertchainurl')) {
 				msg.payload = 'The skill request did not contain a msg.req.headers.signaturecertchainurl property.  It is not possible to validate the request signature without this URL.'; 
 				msg.statusCode = 401;
-				node.send(msg);
+				node.send([msg, null]);
 			} else {
 				//  Use alexa-verifier to verify the request's signature
 				var url = msg.req.headers.signaturecertchainurl;
 				var signature = msg.req.headers.signature;
 				var body = JSON.stringify(msg.req.body);
+				//  Enhance the text of the failure messages returned by alexa-verifier
 				var messages = {
 					'request body invalid json': 'The request body is not a valid JSON object.  The signature cannot be verified.',
 					'missing certificate url': 'The msg.req.headers.signaturecertchainurl property is empty.  The signature cannot be verified.',
@@ -56,8 +64,10 @@ module.exports = function(RED) {
 							msg.payload = 'Verification failed: ' + err;
 						}
 						msg.statusCode = 401;
+						node.send([msg, null]);
+					} else {
+						node.send([null, msg]);
 					}
-					node.send(msg);
 				});
 			}
         });
