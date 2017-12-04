@@ -70,8 +70,8 @@ module.exports = function(RED) {
 					}
 				});
 			}
-        });
-    }
+		});
+	}
 	RED.nodes.registerType('alexa verifier',verify, {
 		credentials: {
 			applid: {type:'text'}
