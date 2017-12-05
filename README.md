@@ -2,18 +2,14 @@
 
 This node performs the security checks mandated by Amazon in the 
 [Alexa Skills Kit](https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html) for Alexa skills hosted as external web services.  It confirms that 
-the incoming request contains the correct Application ID, a valid request signature, 
-and a recent timestamp.
+the incoming request contains a valid request signature, and a recent timestamp.
+
+The skill's Application ID must be checked seperately. Some skills requests, 
+AudioPlayer status updates for example, do not contain an Application ID.
 
 This node is a wrapper for Mike Reinstein&rsquo;s 
 [alexa-verifier](https://github.com/mreinstein/alexa-verifier) NodeJS 
-module, extended to also verify the skill&rsquo;s Application ID.
-
-## Inputs
-
-You must configure this node with your Alexa skill&rsquo;s Application ID. You may 
-enter multiple Application IDs, seperated by commas, if your flow supports more than one
-Alexa skill.
+module.
 
 ## Outputs
 

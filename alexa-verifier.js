@@ -21,21 +21,8 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this, config);
 		var node = this;
 		node.on('input', function(msg) {
-			//  Split the Application ID list into an array and remove any leading/trailing whitespace
-			applid_list = node.credentials.applid.split(',');
-			for (var i = 0; i < applid_list.length; i++) {
-				applid_list[i] = applid_list[i].trim();
-			}
-			//  Do the various verification checks
-			//  There are 2 outputs: [invalid, valid]
-			if (!node.credentials.hasOwnProperty('applid')) {
-				node.error('The alexa verifier node\'s Application ID property needs to be set', msg);
-			} else if (!msg.payload.hasOwnProperty('session')) {
+			if (!msg.payload.hasOwnProperty('session')) {
 				msg.payload = 'The incoming request did not contain a msg.payload.session property object, which suggests that it was not an Alexa skill request'; 
-				msg.statusCode = 401;
-				node.send([msg, null]);
-			} else if (applid_list.indexOf(msg.payload.session.application.applicationId) == -1) {
-				msg.payload = 'The skill request contained an Application ID which did not match any of those configured in the alexa verifier node'; 
 				msg.statusCode = 401;
 				node.send([msg, null]);
 			} else if (!msg.req.headers.hasOwnProperty('signaturecertchainurl')) {
@@ -72,9 +59,5 @@ module.exports = function(RED) {
 			}
 		});
 	}
-	RED.nodes.registerType('alexa verifier',verify, {
-		credentials: {
-			applid: {type:'text'}
-		}
-	});
+	RED.nodes.registerType('alexa verifier',verify);
 }
