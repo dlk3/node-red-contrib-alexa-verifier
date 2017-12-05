@@ -2,7 +2,7 @@
 
 This node performs the security checks mandated by Amazon in the 
 [Alexa Skills Kit](https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-a-web-service.html) for Alexa skills hosted as external web services.  It confirms that 
-the incoming request contains a valid request signature, and a recent timestamp.
+the incoming request contains a valid request signature and a recent timestamp.
 
 The skill's Application ID must be checked seperately. Some skills requests, 
 AudioPlayer status updates for example, do not contain an Application ID.
