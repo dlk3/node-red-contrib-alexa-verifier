@@ -21,14 +21,16 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this, config);
 		var node = this;
 		node.on('input', function(msg) {
+			//  Perform the checks
+			//  There are two outputs [valid, invalid]
 			if (!msg.payload.hasOwnProperty('session')) {
 				msg.payload = 'The incoming request did not contain a msg.payload.session property object, which suggests that it was not an Alexa skill request'; 
 				msg.statusCode = 401;
-				node.send([msg, null]);
+				node.send([null, msg]);
 			} else if (!msg.req.headers.hasOwnProperty('signaturecertchainurl')) {
 				msg.payload = 'The skill request did not contain a msg.req.headers.signaturecertchainurl property.  It is not possible to validate the request signature without this URL.'; 
 				msg.statusCode = 401;
-				node.send([msg, null]);
+				node.send([null, msg]);
 			} else {
 				//  Use alexa-verifier to verify the request's signature
 				var url = msg.req.headers.signaturecertchainurl;
@@ -51,9 +53,9 @@ module.exports = function(RED) {
 							msg.payload = 'Verification failed: ' + err;
 						}
 						msg.statusCode = 401;
-						node.send([msg, null]);
-					} else {
 						node.send([null, msg]);
+					} else {
+						node.send([msg, null]);
 					}
 				});
 			}
