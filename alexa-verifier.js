@@ -18,6 +18,7 @@
 module.exports = function(RED) {
 	function verify(config) {
 		var verifier = require('alexa-verifier');
+		// var verifier = import('alexa-verifier');
 		RED.nodes.createNode(this, config);
 		var node = this;
 		node.on('input', function(msg) {
